@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Linkedin, Send } from 'lucide-react';
+import { Mail, Phone, Linkedin, Send, MapPin } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
@@ -21,86 +21,111 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mock form submission
     setStatus('sending');
     setTimeout(() => {
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setStatus(''), 3000);
+      setTimeout(() => setStatus(''), 4000);
     }, 1500);
   };
+
+  const contactInfo = [
+    {
+      icon: <Mail size={24} />,
+      label: 'Email',
+      value: 'anishm5505@gmail.com',
+      link: 'mailto:anishm5505@gmail.com',
+      color: '#E76F51',
+    },
+    {
+      icon: <Phone size={24} />,
+      label: 'Phone',
+      value: '(864) 765-7844',
+      link: 'tel:+18647657844',
+      color: '#264653',
+    },
+    {
+      icon: <Linkedin size={24} />,
+      label: 'LinkedIn',
+      value: 'Connect on LinkedIn',
+      link: 'https://www.linkedin.com/in/anishmeher',
+      color: '#2A9D8F',
+    },
+    {
+      icon: <MapPin size={24} />,
+      label: 'Location',
+      value: 'Greenville, SC',
+      color: '#F4A261',
+    },
+  ];
 
   return (
     <section id="contact" className="contact">
       <div className="contact-container">
         <div className="section-header">
-          <span className="section-label">Get In Touch</span>
-          <h2 className="section-title">Let's Connect</h2>
+          <div className="section-label">
+            <span className="label-line"></span>
+            <span className="label-text">Get In Touch</span>
+          </div>
+          <h2 className="section-title">Let's Work Together</h2>
           <p className="section-description">
-            I'm always open to discussing new opportunities, collaborations, or supply chain challenges.
+            I'm always open to discussing new opportunities, collaborations, or supply chain challenges. 
+            Drop me a message and I'll get back to you soon.
           </p>
         </div>
 
         <div className="contact-content">
           <div className="contact-info">
-            <div className="info-card">
-              <div className="info-icon">
-                <Mail size={24} />
+            {contactInfo.map((info, index) => (
+              <div 
+                key={index} 
+                className="info-card"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="info-icon" style={{ background: `${info.color}15`, color: info.color }}>
+                  {info.icon}
+                </div>
+                <div className="info-content">
+                  <h4>{info.label}</h4>
+                  {info.link ? (
+                    <a href={info.link} target={info.link.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+                      {info.value}
+                    </a>
+                  ) : (
+                    <p>{info.value}</p>
+                  )}
+                </div>
               </div>
-              <div className="info-text">
-                <h4>Email</h4>
-                <a href="mailto:anishm5505@gmail.com">anishm5505@gmail.com</a>
-              </div>
-            </div>
-
-            <div className="info-card">
-              <div className="info-icon">
-                <Phone size={24} />
-              </div>
-              <div className="info-text">
-                <h4>Phone</h4>
-                <a href="tel:+18647657844">(864) 765-7844</a>
-              </div>
-            </div>
-
-            <div className="info-card">
-              <div className="info-icon">
-                <Linkedin size={24} />
-              </div>
-              <div className="info-text">
-                <h4>LinkedIn</h4>
-                <a href="https://www.linkedin.com/in/anishmeher" target="_blank" rel="noopener noreferrer">
-                  Connect on LinkedIn
-                </a>
-              </div>
-            </div>
+            ))}
           </div>
 
           <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                placeholder="Your name"
-              />
-            </div>
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="name">Your Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="John Doe"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="your.email@example.com"
-              />
+              <div className="form-group">
+                <label htmlFor="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="john@example.com"
+                />
+              </div>
             </div>
 
             <div className="form-group">
@@ -112,7 +137,7 @@ const Contact = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                placeholder="What's this about?"
+                placeholder="What would you like to discuss?"
               />
             </div>
 
@@ -124,8 +149,8 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                rows="5"
-                placeholder="Your message here..."
+                rows="6"
+                placeholder="Tell me more about your project or inquiry..."
               />
             </div>
 
@@ -134,14 +159,16 @@ const Contact = () => {
                 'Sending...'
               ) : (
                 <>
-                  <Send size={18} />
                   <span>Send Message</span>
+                  <Send size={18} />
                 </>
               )}
             </button>
 
             {status === 'success' && (
-              <p className="success-message">Message sent successfully! I'll get back to you soon.</p>
+              <div className="success-message">
+                <p>Thank you for reaching out! I'll get back to you soon.</p>
+              </div>
             )}
           </form>
         </div>
