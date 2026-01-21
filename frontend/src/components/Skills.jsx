@@ -6,39 +6,41 @@ const Skills = () => {
     {
       id: 1,
       category: 'Core Competencies',
+      color: '#E76F51',
       skills: [
-        'Root Cause Analysis',
-        'Data Visualization',
-        'Data Analysis',
+        'Strategic Sourcing',
+        'Cost Optimization',
         'Six Sigma',
         'Vendor Negotiation',
         'Logistics Management',
-        'Leadership',
-        'Critical Thinking',
+        'Risk Mitigation',
+        'Data Analysis',
+        'Process Improvement',
         'Inventory Management',
         'Production Management',
-        'Process Improvement',
-        'Problem Solving',
+        'Leadership',
         'Contract Negotiation',
+        'Critical Thinking',
       ],
     },
     {
       id: 2,
-      category: 'Software Proficiency',
+      category: 'Technical Tools',
+      color: '#264653',
       skills: [
-        'MS Excel',
-        'MS Project',
-        'Tableau',
         'SAP-BW',
-        'TEMPO',
         'Python',
         'SQL',
-        'MATLAB',
+        'Tableau',
+        'MS Excel',
         'Minitab',
         'JMP',
+        'MATLAB',
+        'MS Project',
+        'TEMPO',
         'CATIA',
-        'Notion',
         'Visio',
+        'Notion',
       ],
     },
   ];
@@ -47,24 +49,39 @@ const Skills = () => {
     <section id="skills" className="skills">
       <div className="skills-container">
         <div className="section-header">
-          <span className="section-label">What I Bring</span>
-          <h2 className="section-title">Skills & Expertise</h2>
+          <div className="section-label">
+            <span className="label-line"></span>
+            <span className="label-text">Expertise</span>
+          </div>
+          <h2 className="section-title">Skills & Tools</h2>
+          <p className="section-description">
+            A comprehensive toolkit combining strategic thinking with technical proficiency
+          </p>
         </div>
 
-        <div className="skills-content">
+        <div className="skills-wrapper">
           {skillCategories.map((category, catIndex) => (
             <div 
               key={category.id} 
               className="skill-category"
-              style={{ animationDelay: `${catIndex * 0.1}s` }}
+              style={{ animationDelay: `${catIndex * 0.15}s` }}
             >
-              <h3 className="category-title">{category.category}</h3>
+              <div className="category-header">
+                <div className="category-icon" style={{ background: `${category.color}15`, color: category.color }}>
+                  <span className="icon-dot" style={{ background: category.color }}></span>
+                </div>
+                <h3 className="category-title">{category.category}</h3>
+              </div>
+              
               <div className="skills-grid">
                 {category.skills.map((skill, skillIndex) => (
                   <div 
                     key={skillIndex} 
                     className="skill-tag"
-                    style={{ animationDelay: `${(catIndex * 0.1) + (skillIndex * 0.05)}s` }}
+                    style={{ 
+                      animationDelay: `${(catIndex * 0.15) + (skillIndex * 0.05)}s`,
+                      '--hover-color': category.color 
+                    }}
                   >
                     {skill}
                   </div>
