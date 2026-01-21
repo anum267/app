@@ -1,73 +1,86 @@
 import React from 'react';
-import { User, Target, TrendingUp } from 'lucide-react';
+import { Sparkles, TrendingUp, Award } from 'lucide-react';
 import './About.css';
 
 const About = () => {
+  const stats = [
+    { number: '4+', label: 'Years Experience', icon: <Award size={24} /> },
+    { number: '$7M+', label: 'Impact Delivered', icon: <TrendingUp size={24} /> },
+    { number: '100%', label: 'SLA Adherence', icon: <Sparkles size={24} /> },
+  ];
+
   return (
     <section id="about" className="about">
       <div className="about-container">
         <div className="section-header">
-          <span className="section-label">Get To Know Me</span>
-          <h2 className="section-title">My Story</h2>
+          <div className="section-label">
+            <span className="label-line"></span>
+            <span className="label-text">About Me</span>
+          </div>
+          <h2 className="section-title">My Journey in Supply Chain Excellence</h2>
         </div>
 
         <div className="about-content">
-          <div className="about-main">
-            <div className="about-text">
-              <p className="text-large">
-                I'm a <strong>results-driven Supply Chain and Operations Professional</strong> with over 
-                4 years of experience in strategic sourcing, cost optimization, and continuous improvement.
-              </p>
+          <div className="about-story">
+            <div className="story-card">
+              <div className="story-header">
+                <h3>The Beginning</h3>
+              </div>
               <p>
-                My journey began with a Bachelor's in Mechanical Engineering from Savitribai Phule Pune University 
-                in India, where I graduated with a 3.30 GPA. After gaining valuable industry experience across 
-                manufacturing and supply chain roles, I pursued my Master's in Industrial Engineering at Clemson 
-                University, achieving a 3.73 GPA.
+                My journey began with a <strong>Bachelor's in Mechanical Engineering</strong> from 
+                Savitribai Phule Pune University in India, where I developed a strong foundation in 
+                engineering principles and systems thinking. This technical background became the 
+                cornerstone of my analytical approach to supply chain challenges.
               </p>
+            </div>
+
+            <div className="story-card">
+              <div className="story-header">
+                <h3>Professional Evolution</h3>
+              </div>
               <p>
-                Throughout my career, I've specialized in enhancing operational efficiency through data-driven 
-                decision-making and cross-functional collaboration. From managing $100M commodity portfolios 
-                to implementing MRP systems and optimizing logistics spend, I've consistently delivered measurable 
-                business impact.
+                Over the past 4+ years, I've worked across diverse roles—from manufacturing floors to 
+                strategic sourcing desks—gaining hands-on experience in <strong>production engineering, 
+                procurement, and logistics optimization</strong>. Each role taught me the interconnected 
+                nature of supply chain operations and the importance of data-driven decision-making.
               </p>
+            </div>
+
+            <div className="story-card">
+              <div className="story-header">
+                <h3>Advanced Education</h3>
+              </div>
               <p>
-                What drives me is the challenge of solving complex supply chain problems and the satisfaction of 
-                seeing tangible results—whether it's <strong>$2.1M in cost savings</strong>, <strong>55% reduction 
-                in Risk Priority Numbers</strong>, or achieving <strong>100% SLA adherence</strong>.
+                To deepen my expertise, I pursued a <strong>Master's in Industrial Engineering at Clemson 
+                University</strong>, achieving a 3.73 GPA. This advanced education equipped me with sophisticated 
+                tools in operations research, supply chain analytics, and process optimization that I now apply 
+                to solve complex business challenges.
+              </p>
+            </div>
+
+            <div className="story-card story-highlight">
+              <div className="story-header">
+                <h3>What Drives Me</h3>
+              </div>
+              <p>
+                I'm passionate about transforming supply chain operations through innovation and continuous 
+                improvement. Whether it's negotiating <strong>$2.1M in cost savings</strong>, implementing 
+                risk mitigation strategies that reduce RPN by <strong>55%</strong>, or achieving 
+                <strong>100% SLA adherence</strong>—I thrive on delivering measurable business impact.
               </p>
             </div>
           </div>
 
-          <div className="about-highlights">
-            <div className="highlight-card">
-              <div className="highlight-icon">
-                <User size={24} />
+          <div className="about-stats">
+            {stats.map((stat, index) => (
+              <div key={index} className="stat-card" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="stat-icon">{stat.icon}</div>
+                <div className="stat-content">
+                  <h4 className="stat-number">{stat.number}</h4>
+                  <p className="stat-label">{stat.label}</p>
+                </div>
               </div>
-              <h3 className="highlight-title">Professional Focus</h3>
-              <p className="highlight-text">
-                Strategic sourcing, logistics management, process improvement, and data-driven optimization
-              </p>
-            </div>
-
-            <div className="highlight-card">
-              <div className="highlight-icon">
-                <Target size={24} />
-              </div>
-              <h3 className="highlight-title">Core Strengths</h3>
-              <p className="highlight-text">
-                Cross-functional leadership, vendor negotiation, Six Sigma methodologies, and supply chain analytics
-              </p>
-            </div>
-
-            <div className="highlight-card">
-              <div className="highlight-icon">
-                <TrendingUp size={24} />
-              </div>
-              <h3 className="highlight-title">Impact Driven</h3>
-              <p className="highlight-text">
-                Delivered $7M+ in cost savings and operational improvements across multiple organizations
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </div>
