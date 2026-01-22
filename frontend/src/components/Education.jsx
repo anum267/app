@@ -13,7 +13,7 @@ const Education = () => {
       period: 'Aug 2023 - May 2025',
       gpa: '3.73/4.00',
       color: '#E76F51',
-      highlights: ['Operations Research', 'Supply Chain Analytics', 'Process Optimization'],
+      highlights: ['Operations Research', 'Supply Chain Analytics', 'Process Optimization','Purchasing'],
     },
     {
       id: 2,
